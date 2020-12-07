@@ -10,7 +10,10 @@
   <properties>
 	  <maven.compiler.source>1.8</maven.compiler.source>
 	  <maven.compiler.target>1.8</maven.compiler.target>
-	  </properties>
+	  // i due project. sottostanti li metti solo quando metti i plugins per coveralls e jacoco
+	  <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	  <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -19,7 +22,7 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-  <build> 
+  <build> // questo lo metti quando fai il checkstile, dopo il comando mvn install, prima del comando mvn package
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -39,7 +42,27 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+			<plugin> // questi due plugins vanno tolti, ti dirò io quando metterli 
+				<groupId>org.eluder.coveralls</groupId>
+				<artifactId>coveralls-maven-plugin</artifactId>
+				<version>4.3.0</version>
+				<configuration>
+					<repoToken>Cm1hYXsQTNot4itSGKijlaM7gNi3olss4</repoToken>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.6</version>
+				<executions>
+					<execution>
+						<id>prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 </project>
